@@ -1,0 +1,37 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "kvguard"
+version = "0.0.1"
+description = "KV cache memory-safety checker for LLM serving systems (core, GPU toolchain, adapters)"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+# The core depends on the standard library and NumPy only (decision 0006). Adapters import the
+# framework they serve from the host environment; nothing here pins torch.
+dependencies = ["numpy>=1.26"]
+
+# vLLM loads this entry point in its engine-core and worker processes (``VLLM_PLUGINS=kvguard``
+# selects it); kvguard/adapters/vllm/plugin.py also writes an uninstalled *.dist-info for it.
+[project.entry-points."vllm.general_plugins"]
+kvguard = "kvguard.adapters.vllm.plugin:register"
+
+[tool.hatch.build.targets.wheel]
+packages = ["kvguard"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/unit"]
+pythonpath = ["."]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["kvguard", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+# E501: line length is left to the formatter. RUF001-003: the prose uses en dashes and similar.
+ignore = ["E501", "RUF001", "RUF002", "RUF003"]

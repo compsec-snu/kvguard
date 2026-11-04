@@ -1,0 +1,10 @@
+KVGuard
+Copyright 2026 The KVGuard Authors
+
+This product includes software developed for research on KV cache memory
+safety in LLM serving systems. It is licensed under the Apache License,
+Version 2.0 (see the LICENSE file).
+
+KVGuard attaches to, but does not include or modify, third-party serving
+systems (vLLM, SGLang). Those systems are distributed separately under their
+own licenses.

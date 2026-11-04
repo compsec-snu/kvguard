@@ -1,0 +1,5 @@
+# Development tools for the kvguard package (decision 0006): test runner, linter/formatter, and the
+# core's only third-party runtime dependency. Framework environments are separate.
+pytest>=8
+ruff>=0.9
+numpy>=2

@@ -1,0 +1,7 @@
+# vLLM 0.32.0 (decision 0005). PyPI's default torch 2.13.0 wheel is the CUDA 13 build that
+# vLLM's requirements/cuda.txt expects.
+vllm==0.32.0
+# vllm bench serve's custom JSONL dataset loader (the LongBench and MMLU workloads of
+# experiments/2026-10-30-paper-eval) imports pandas; added to the lock by hand, pinned to the
+# version the sglang environment resolves, so the engine pins do not move.
+pandas==3.0.6

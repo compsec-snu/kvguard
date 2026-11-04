@@ -1,0 +1,7 @@
+# SGLang 0.5.22 (decision 0005), base package only: the server runtime is in the base
+# dependencies; [all] adds diffusion, tracing and HTTP/2 extras that KVGuard does not need.
+sglang==0.5.22
+# Upstream pins two pre-releases in python/pyproject.toml at v0.5.22. uv admits pre-releases only
+# when they are explicit or unavoidable, so they are repeated here verbatim.
+cuda-tile==1.6.0rc5
+flash-attn-4>=4.0.0b18
